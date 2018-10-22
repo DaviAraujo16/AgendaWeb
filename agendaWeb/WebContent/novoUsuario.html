@@ -22,7 +22,7 @@
 	
 	</div>
 	<!-- Corpo -->	
-	<div class="container mt-5" style="width:1000px;">
+	<div class="container mt-5" style="width:900px;">
 		<div class="card">
 			<div class="card-header">
 				<div class="row align-items-center">
@@ -30,58 +30,69 @@
 						<img src="imagens/useradd48.png">
 					</div>
 					<div class="col-md-11">
-						<h3 class="text-info">Cadastro Novo Usuário</h3>
+						<h3 class="text-info" id="titulo">Cadastro Novo Usuário</h3>
 					</div>
 				</div>
 			</div>
-			<div class="card-body">
-				<!-- Linha 1 -->
-				<div class="row">
-					<div class="col-md-12">
-						<h5 class="text-primary mb-4">Dados Pessoais:<h5>
+			<form id="usuario" action="resultado.jsp" method="post">
+				<div class="card-body">
+					<!-- Linha 1 -->
+					<div class="row">
+						<div class="col-md-12">
+							<h6 class="text-primary  mt-4 mb-4">Dados Pessoais</h6>
+						</div>
 					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-md-6">
-						<label>*Nome:</label>
-						<input class="form-control" type="text">
+					<div>
+						<ul id="erros"></ul>
 					</div>
-					<div class="col-md-3">
-						<label>*Dt.Nascimento:</label>
-						<input class="form-control" type="date">
-					</div>
-					<div class="col-md-3">
-						<label>*Sexo:</label>
-						<select class="form-control">
-							<option>Selecione</option>
-							<option>Feminino</option>
-							<option>Masculino</option>
-						</select>						
-					</div>
-					<!-- Linha 2 -->
-					<div class="col-md-12">
-						<h5 class="text-primary mb-4">Dados de acesso:</h5>
+					<div class="row form-group">
+					
+						<div class="col-md-5">
+							<label for="txt-nome">*Nome:</label>
+							<input class="form-control" type="text" name="txt-nome" id="txt-nome">
+						</div>
+						<div class="col-md-3">
+							<label for="txt-nascimento">*Dt.Nascimento:</label>
+							<input class="form-control" type="date"  name="txt-nascimento" id="txt-nascimento">
+						</div>
+						<div class="col-md-3">
+							<label for="txt-sexo">*Sexo:</label>
+							<select class="form-control" name="txt-sexo" id="txt-sexo">
+								<option>Selecione</option>
+								<option>Feminino</option>
+								<option>Masculino</option>
+							</select>						
+						</div>
+						<!-- Linha 2 -->
+						<div class="col-md-12">
+							<h6 class="text-primary  mt-4 mb-4">Dados de acesso:</h6><br>
+						</div>
+						
+						<div class="col-md-6">
+							<label for="txt-email">*E-mail:</label>
+							<input class="form-control" type="email" name="txt-email" id="txt-email">
+						</div>
+						<div class="col-md-3">
+							<label for="txt-senha1">*Senha:</label>
+							<input class="form-control" type="password" name="txt-senha1" id="txt-senha1">
+						</div>
+						<div class="col-md-3">
+							<label for="txt-senha2">*Confirmação Senha:</label>
+							<input class="form-control" type="password" name="txt-senha2" id="txt-senha2">						
+						</div>
+						
 					</div>
 					
-					<div class="col-md-6">
-						<label>*E-mail:</label>
-						<input class="form-control" type="email">
-					</div>
-					<div class="col-md-3">
-						<label>*Senha:</label>
-						<input class="form-control" type="password">
-					</div>
-					<div class="col-md-3">
-						<label>*Confirmação Senha:</label>
-						<input class="form-control" type="password">						
-					</div>
-					
 				</div>
-			</div>
-			<div class="card-footer">
-			
-			</div>		
+				<div class="card-footer">
+					<button class="btn btn-success" id="bt-criar">Criar Conta</button>
+					
+					<a href="login.html" class=" btn btn-danger">Cancelar</a>			
+				</div>
+			</form>		
 		</div>
 	</div>
+	<script src="js/valida.js"></script>
+	<script src="js/erros.js"></script>
 </body>
 </html>
