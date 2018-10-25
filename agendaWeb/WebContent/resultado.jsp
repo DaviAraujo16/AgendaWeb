@@ -15,9 +15,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%= nome %><br>
 	<%= email %><br>
 	<%= senha %><br>
-	<%= nome %><br>
 	<h1> Eu sou um Html!</h1>
 </body>
 </html>

@@ -6,7 +6,7 @@ function validaUsuarios (usuario){
         erros.push("O nome deve ter pelo menos 5 caracteres.");
     }
 
-    if(usuario.nascimento.length == 0){
+    if(usuario.nascimento.length === 0){
         erros.push("A data de nascimento é obrigatória.")    
     }
     
@@ -14,7 +14,7 @@ function validaUsuarios (usuario){
         erros.push("O email é obrigatório.")
     }
     
-    if(usuario.sexo =="Selcione"){
+    if(usuario.sexo == "Selecione"){
         erros.push("Selecione um sexo.")
     }
     

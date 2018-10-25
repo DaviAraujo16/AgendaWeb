@@ -2,11 +2,11 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body class="bg-dark">
-	<!-- Cabeçalho -->
+	<!-- CabeÃ§alho -->
 	<div class="bg-info text-white">
 		<div class="container">
 			<div class="row">
@@ -14,7 +14,7 @@
 					<img src="imagens/agenda64.png">
 				</div>
 				<div class="col-md-11">
-					<h1>Agenda Eletrônica</h1>
+					<h1>Agenda EletrÃ´nica</h1>
 					<h6>Contatos e Compromissos</h6>
 				</div>
 			</div>
@@ -30,12 +30,16 @@
 						<img src="imagens/useradd48.png">
 					</div>
 					<div class="col-md-11">
-						<h3 class="text-info" id="titulo">Cadastro Novo Usuário</h3>
+						<h3 class="text-info" id="titulo">Cadastro Novo UsuÃ¡rio</h3>
 					</div>
 				</div>
 			</div>
-			<form id="usuario" action="resultado.jsp" method="post">
+			<form id="usuario" action="UsuarioServlet" method="get">
 				<div class="card-body">
+					<div class="alert-warning">
+						<ul id="mensagens-erro">
+						</ul>
+					</div>
 					<!-- Linha 1 -->
 					<div class="row">
 						<div class="col-md-12">
@@ -77,7 +81,7 @@
 							<input class="form-control" type="password" name="txt-senha1" id="txt-senha1">
 						</div>
 						<div class="col-md-3">
-							<label for="txt-senha2">*Confirmação Senha:</label>
+							<label for="txt-senha2">*ConfirmaÃ§Ã£o Senha:</label>
 							<input class="form-control" type="password" name="txt-senha2" id="txt-senha2">						
 						</div>
 						
