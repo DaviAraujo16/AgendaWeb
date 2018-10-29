@@ -39,6 +39,7 @@ botao.addEventListener('click', function(){
             ul.appendChild(li)
         }
     }
+    
 });
 
 
@@ -46,6 +47,7 @@ function mudarCor(){
     botao.style.background = "rgb(252, 215, 3)";
     botao.style.color = "black";
 }
+
 
 
 

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.senai.sp.cfp127.dao.UsuarioDao;
+import br.senai.sp.cfp127.model.Usuario;
+
 @WebServlet("/UsuarioServlet")
 public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -15,21 +18,29 @@ public class UsuarioServlet extends HttpServlet {
     public UsuarioServlet() {
         super();
     }
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("txt-nome"));
-		System.out.println(request.getParameter("txt-nascimento"));
-		System.out.println(request.getParameter("txt-sexo"));
-		System.out.println(request.getParameter("txt-email"));
-		System.out.println(request.getParameter("txt-senha1"));
-		
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		
+		System.out.println("Estou aqui!!!!!");
 		
-		//String nome = request.getParameter("txt-nome");
+		//Cria um novo Usuario 
+		Usuario u  = new Usuario();
+		
+		//Pega os dados do formulario e definiu os atributos do usuario
+		u.setNome(request.getParameter("txt-nome"));
+		u.setEmail(request.getParameter("txt-email"));
+		u.setSenha(request.getParameter("txt-senha1"));
+		u.setDtNascimento(request.getParameter("txt-nascimento"));
+		u.setSexo(request.getParameter("txt-sexo"));
+
+		//Cria um usuarioDao
+		UsuarioDao dao = new UsuarioDao();
+		
+		//Passa como usuario para salvar "u"
+		dao.setUsuario(u);
+		
+		//Chama o metodo gravar
+		dao.gravar();
 	}
 
 }
