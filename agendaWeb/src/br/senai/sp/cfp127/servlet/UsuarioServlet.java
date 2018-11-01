@@ -32,15 +32,19 @@ public class UsuarioServlet extends HttpServlet {
 		u.setSenha(request.getParameter("txt-senha1"));
 		u.setDtNascimento(request.getParameter("txt-nascimento"));
 		u.setSexo(request.getParameter("txt-sexo"));
-
+		
 		//Cria um usuarioDao
 		UsuarioDao dao = new UsuarioDao();
-		
+	
 		//Passa como usuario para salvar "u"
 		dao.setUsuario(u);
-		
+	
 		//Chama o metodo gravar
-		dao.gravar();
+		if (dao.gravar()) {
+			response.sendRedirect("successo.html");
+		}else {
+			response.sendRedirect("login.html");
+		}
 	}
 
 }
