@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.senai.sp.cfp127.dao.UsuarioDao;
 import br.senai.sp.cfp127.model.Usuario;
@@ -25,13 +26,19 @@ public class AutenticaServlet extends HttpServlet {
 		//Pega os valores digitados na caixa de texto (email e senha)
 		usuario = dao.autenticar(request.getParameter("email"),request.getParameter("senha"));
 		
+		//variavel de sessão que contem todos os dados do usuario 
+		HttpSession sessao = request.getSession();
+				
+		//sessão recebe o atributo usuario que recebe como valor a referência ao objeto usuario (com todas as suas informaçãoes)
+		sessao.setAttribute("usuario", usuario);
+				
+		
 		//Abaixo compara com codigo de usuario
 		
 		//Se o codigo do usuario for diferente de zero(logou)
 		if(usuario.getCod() != 0) {
 			//mande para a tela de resulta
-			response.sendRedirect("resultado.jsp");
-			
+			response.sendRedirect("index.jsp");
 		}
 		//Se não(não logou)
 		else {

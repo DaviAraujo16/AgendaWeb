@@ -44,6 +44,27 @@ public class UsuarioDao {
 		
 	}
 	
+	//** METODO PARA AtUALIZAR UM USUÁRIO NO BANCO
+	public boolean atualizar() {
+		String sql = "UPDATE tbl_usuario SET nome = ?, email = ?, senha = ?, sexo = ?, dtNascimento = ? WHERE cod = ?";
+		
+		try {
+			stm = Conexao.getConexao().prepareStatement(sql);
+			stm.setString(1,usuario.getNome());
+			stm.setString(2,usuario.getEmail());
+			stm.setString(3, usuario.getSenha());
+			stm.setString(4, usuario.getSexo().substring(0,1));
+			stm.setString(5, usuario.getDtNascimento());
+			stm.setInt(6, usuario.getCod());
+			stm.execute();
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;	
+		}
+		
+	}
+	
 	//** METODO PARA AUTENTICAR O USUARIO (login)
 	//Esse metodo consulta o banco e retorna apenas uma linha com o usuario
 	public Usuario autenticar(String email, String senha){
@@ -56,10 +77,10 @@ public class UsuarioDao {
 			stm = Conexao.getConexao().prepareStatement(sql);
 			stm.setString(1,senha);
 			stm.setString(2, email);
-			//Retorna uma linha do banco 
+			//Retorna uma linha do banco (a primeira linha é o cabeçalho e segunda um registro )
 			rs = stm.executeQuery();
 			
-			//Passa o ponteiro 
+			//Passa o ponteiro para a proxima linha onde está as informações
 			if(rs.next()) {
 				//Popula o usuario com os dados do banco 
 				this.usuario.setCod(rs.getInt("cod"));

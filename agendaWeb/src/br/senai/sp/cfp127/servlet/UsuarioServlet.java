@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.senai.sp.cfp127.dao.UsuarioDao;
 import br.senai.sp.cfp127.model.Usuario;
@@ -32,19 +33,35 @@ public class UsuarioServlet extends HttpServlet {
 		u.setSenha(request.getParameter("txt-senha1"));
 		u.setDtNascimento(request.getParameter("txt-nascimento"));
 		u.setSexo(request.getParameter("txt-sexo"));
+
+		
+		//Se o valor da caixa maior que 0 chama o atualizar
+		if (request.getParameter("txt-cod").length() < 0) {
+			u.setCod(Integer.parseInt(request.getParameter("txt-cod")));
+		}
 		
 		//Cria um usuarioDao
 		UsuarioDao dao = new UsuarioDao();
 	
 		//Passa como usuario para salvar "u"
 		dao.setUsuario(u);
-	
-		//Chama o metodo gravar
-		if (dao.gravar()) {
-			response.sendRedirect("successo.html");
-		}else {
-			response.sendRedirect("login.html");
+		
+		if(u.getCod() == 0) {
+			//Chama o metodo gravar
+			if (dao.gravar()) {
+				response.sendRedirect("successo.html");
+			}else {
+				response.sendRedirect("login.html");
+			}
+			
+		}else if (dao.atualizar()) {
+			//HttpSession sessao = request.getSession()
+			response.sendRedirect("index.jsp");
 		}
+
+	
+	
+		
 	}
 
 }
