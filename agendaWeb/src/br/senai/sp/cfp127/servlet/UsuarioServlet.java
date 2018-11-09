@@ -32,11 +32,11 @@ public class UsuarioServlet extends HttpServlet {
 		u.setEmail(request.getParameter("txt-email"));
 		u.setSenha(request.getParameter("txt-senha1"));
 		u.setDtNascimento(request.getParameter("txt-nascimento"));
-		u.setSexo(request.getParameter("txt-sexo"));
+		u.setSexo(request.getParameter("txt-sexo").substring(0,1));
 
 		
 		//Se o valor da caixa maior que 0 chama o atualizar
-		if (request.getParameter("txt-cod").length() < 0) {
+		if (request.getParameter("txt-cod").length() > 0) {
 			u.setCod(Integer.parseInt(request.getParameter("txt-cod")));
 		}
 		
@@ -46,17 +46,21 @@ public class UsuarioServlet extends HttpServlet {
 		//Passa como usuario para salvar "u"
 		dao.setUsuario(u);
 		
+		
 		if(u.getCod() == 0) {
 			//Chama o metodo gravar
 			if (dao.gravar()) {
 				response.sendRedirect("successo.html");
 			}else {
-				response.sendRedirect("login.html");
+				response.sendRedirect("novoUsuario.html");
 			}
 			
 		}else if (dao.atualizar()) {
-			//HttpSession sessao = request.getSession()
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("usuario",u);
 			response.sendRedirect("index.jsp");
+		}else {
+			response.sendRedirect("editarUsuario.jsp");
 		}
 
 	

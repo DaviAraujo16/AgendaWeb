@@ -52,7 +52,7 @@
 
 						<div class="card">
 							<form id="usuario" action="UsuarioServlet" method="post">
-								<div class="card-header">????</div>
+								<div class="card-header">Atualizar Dados</div>
 								<div class="card-body">
 									<div class="alert-warning">
 										<ul id="mensagens-erro">
@@ -70,7 +70,7 @@
 									<div class="row form-group">
 
 										<div class="col-md-5">
-											<input type="text" name="txt-cod" value="<%= usuario.getCod()%>" hidden="true">
+											<input type="text" name="txt-cod" value="<%= usuario.getCod()%>" hidden>
 											<label for="txt-nome">*Nome:</label> <input
 												class="form-control" type="text" name="txt-nome"
 												id="txt-nome" value="<%=usuario.getNome()%>">
@@ -115,7 +115,7 @@
 								</div>
 								<div class="card-footer">
 									<button class="btn btn-success" id="bt-criar">Atualizar os dados</button>
-									<a href="login.html" class=" btn btn-danger">Cancelar</a>
+									<a href="index.jsp" class="btn btn-danger">Cancelar</a>
 								</div>
 							</form>
 
@@ -125,6 +125,8 @@
 			</div>
 		</div>
 	</div>
+	<script src="js/valida.js"></script>
+	<script src="js/erros.js"></script>
 </body>
 </html>
 <%
