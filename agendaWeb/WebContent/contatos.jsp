@@ -54,15 +54,24 @@
 			<div class="col-md-8">
 				<div class="card">
 					<div class="card-header bg-info">
-						<h5 class="text-white">Bem-vindo</h5>
+						<div class="row">
+							<div class="col-md-9">
+								<h5 class="text-white">Meus Contatos</h5>
+
+							</div>
+							<div class="col-md-3">
+								<a href="cadastroContato.jsp" class="btn btn-success"> Novo Contato </a>
+							</div>
+						</div>
 					</div>
 					<div class="card-body">
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col">Cód.</th>
-									<th scope="col">Nome</th>
-									<th scope="col">E-mail</th>
+									<th>Cód.</th>
+									<th>Nome</th>
+									<th>E-mail</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -70,8 +79,18 @@
 							
 								<tr>
 									<td><%= c.getCodContato() %></td>
-									<td><%= c.getNome()%></td>
+									<td>
+										<a href="ExibirContatoServlet&cod_contato=<%=c.getCodContato()%>">
+											<%= c.getNome()%>
+										</a>
+									</td>
 									<td><%= c.getEmail()%></td>
+									<td><%= c.getEmail()%></td>
+									<td>
+										<a href="ExcluirContatoServlet&cod_contato=<%=c.getCodContato()%>">
+											<img src="imagens/trash20.png">
+										</a>
+									</td>
 								</tr>
 								
 								
