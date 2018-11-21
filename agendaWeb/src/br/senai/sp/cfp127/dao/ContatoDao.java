@@ -51,10 +51,10 @@ public class ContatoDao {
 		try {
 			stm = Conexao.getConexao().prepareStatement(sql);
 			stm.setInt(1,contato.getUsuario().getCod());
-			stm.setString(1,contato.getNome());
-			stm.setString(2,contato.getEmail());
-			stm.setString(3,contato.getTelefone());
-			stm.setString(4,contato.getEndereco());
+			stm.setString(2,contato.getNome());
+			stm.setString(3,contato.getEmail());
+			stm.setString(4,contato.getTelefone());
+			stm.setString(5,contato.getEndereco());
 			stm.execute();
 			return true;
 		}catch(Exception e){
@@ -62,5 +62,50 @@ public class ContatoDao {
 			return false;
 		}
 	}
+	
+	
+	public boolean atualizar(Contato contato) {
+		
+		String sql = "UPDATE tbl_contato SET nome = ?, email = ?, telefone = ?, endereco = ? WHERE cod_usuario = ?";
 
+		try {
+			stm = Conexao.getConexao().prepareStatement(sql);
+			
+			stm.setString(1,contato.getNome());
+			stm.setString(2,contato.getEmail());
+			stm.setString(3,contato.getTelefone());
+			stm.setString(4,contato.getEndereco());
+			stm.setInt(5,contato.getUsuario().getCod());
+			stm.execute();
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public Contato getContato( int codContato){
+				
+		String sql = "SELECT * FROM tbl_contato WHERE cod_contato = ?";
+		try {
+			stm = Conexao.getConexao().prepareStatement(sql);
+			stm.setInt(1, codContato);
+			rs = stm.executeQuery();
+			
+			//Enquanto tiver uma procima linha no resultado da consulta ao banco criar um contato
+			if(rs.next()) {
+				contato = new Contato();
+				contato.setCodContato(rs.getInt("cod_contato"));
+				contato.setNome(rs.getString("nome"));
+				contato.setEmail(rs.getString("email"));
+				contato.setTelefone(rs.getString("telefone"));
+				contato.setEndereco(rs.getString("endereco"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return contato;
+		
+	}
+	
+	
 }
