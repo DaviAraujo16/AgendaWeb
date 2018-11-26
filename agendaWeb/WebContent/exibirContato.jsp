@@ -56,7 +56,7 @@
 					<div class="card-body">
 
 						<div class="card">
-							<form id="usuario" action="CriarContatoServlet" method="get">
+							<form id="usuario" action="AtualizaContatoServlet" method="get">
 								<div class="card-header">Atualizar</div>
 								<div class="card-body">
 									<div class="alert-warning">
@@ -79,7 +79,7 @@
 											<input class="form-control" type="text" name="txt-nome" id="txt-nome" value="<%= contato.getNome()%>">
 										</div>
 										<div class="col-md-4">
-											<label for="txt-nascimento">*Telefone:</label>
+											<label for="txt-telefone">*Telefone:</label>
 											<input class="form-control" type="text" name="txt-telefone" id="txt-telefone"  value="<%= contato.getTelefone()%>">
 										</div>
 										<!-- Linha 2 -->
@@ -93,7 +93,7 @@
 											<input class="form-control" type="email" name="txt-email" id="txt-email" value="<%= contato.getEmail()%>">
 										</div>
 										<div class="col-md-6">
-											<label for="txt-senha1">*Endereço:</label>
+											<label for="txt-endereco">*Endereço:</label>
 											<input class="form-control" type="text" name="txt-endereco"id="txt-endereco" value="<%= contato.getEndereco()%>">
 										</div>
 		

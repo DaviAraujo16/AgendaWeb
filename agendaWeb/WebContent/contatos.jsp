@@ -85,7 +85,6 @@
 										</a>
 									</td>
 									<td><%= c.getEmail()%></td>
-									<td><%= c.getEmail()%></td>
 									<td>
 										<a href="ExcluirContatoServlet?cod_contato=<%=c.getCodContato()%>">
 											<img src="imagens/trash20.png">

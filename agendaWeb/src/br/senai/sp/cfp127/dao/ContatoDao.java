@@ -13,7 +13,7 @@ public class ContatoDao {
 	private Contato contato;
 	private PreparedStatement stm;
 	private ResultSet rs;
-	
+
 	//Metodo que recebe o codigo do usuario pega todos os contatos do usuario e coloca-os em um array
 	public ArrayList<Contato> getContatos( int codUsuario){
 		ArrayList<Contato> contatos = new ArrayList<>();
@@ -66,7 +66,7 @@ public class ContatoDao {
 	
 	public boolean atualizar(Contato contato) {
 		
-		String sql = "UPDATE tbl_contato SET nome = ?, email = ?, telefone = ?, endereco = ? WHERE cod_usuario = ?";
+		String sql = "UPDATE tbl_contato SET nome = ?, email = ?, telefone = ?, endereco = ? WHERE cod_contato = ?";
 
 		try {
 			stm = Conexao.getConexao().prepareStatement(sql);
@@ -75,7 +75,7 @@ public class ContatoDao {
 			stm.setString(2,contato.getEmail());
 			stm.setString(3,contato.getTelefone());
 			stm.setString(4,contato.getEndereco());
-			stm.setInt(5,contato.getUsuario().getCod());
+			stm.setInt(5,contato.getCodContato());
 			stm.execute();
 			return true;
 		}catch(Exception e){
@@ -83,6 +83,23 @@ public class ContatoDao {
 			return false;
 		}
 	}
+	
+	public boolean deletar(int codigo) {
+		
+		String sql = "DELETE FROM tbl_contato WHERE cod_contato = ?";
+		
+		try {
+			stm = Conexao.getConexao().prepareStatement(sql);
+			stm.setInt(1,codigo);
+			stm.execute();
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 	public Contato getContato( int codContato){
 				
 		String sql = "SELECT * FROM tbl_contato WHERE cod_contato = ?";

@@ -7,41 +7,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.Session;
-
 import br.senai.sp.cfp127.dao.ContatoDao;
 import br.senai.sp.cfp127.model.Contato;
 import br.senai.sp.cfp127.model.Usuario;
 
-@WebServlet("/CriarContatoServlet")
-public class CriarContatoServlet extends HttpServlet {
+@WebServlet("/AtualizaContatoServlet")
+public class AtualizaContatoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public CriarContatoServlet() {
+	
+    public AtualizaContatoServlet() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Estou aqui!!!!!");
 		
 		Contato contato = new Contato();
-		
-		Usuario usuario = new Usuario();
-		
-		usuario = (Usuario) request.getSession().getAttribute("usuario");
-		
-		contato.setUsuario(usuario);
+		contato.setCodContato(Integer.parseInt((request.getParameter("txt-cod"))));
 		contato.setNome(request.getParameter("txt-nome"));
-		contato.setEmail(request.getParameter("txt-email"));
 		contato.setTelefone(request.getParameter("txt-telefone"));
+		contato.setEmail(request.getParameter("txt-email"));
 		contato.setEndereco(request.getParameter("txt-endereco"));
-		
+		//contato.setUsuario((Usuario)request.getSession().getAttribute("usuario"));
 		
 		ContatoDao dao = new ContatoDao();
 		
-		if(dao.gravar(contato)){
+		
+		
+		if(dao.atualizar(contato)){
 			response.sendRedirect("contatos.jsp");
 		}else {
-			response.sendRedirect("cadastroContato.jsp");
+			System.out.println("ERRO NA ATUALIZAÇÃO");
 		}
+		
+		
 	}
 
 }
