@@ -57,7 +57,7 @@
 
 						<div class="card">
 							<form id="usuario" action="AtualizaContatoServlet" method="get">
-								<div class="card-header">Atualizar</div>
+								<div class="card-header"></div>
 								<div class="card-body">
 									<div class="alert-warning">
 										<ul id="mensagens-erro">

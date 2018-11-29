@@ -57,7 +57,7 @@
 				<div class="card">
 					<div class="card-header bg-info">
 						<div class="row">
-							<div class="col-md-9">
+							<div class="col-md-8">
 								<h5 class="text-white">Meus Contatos</h5>
 
 							</div>
@@ -67,16 +67,15 @@
 						</div>
 					</div>
 					<div class="col-md-4 mt-4">
-						<label for="txt-nascimento">*Status:</label>
+						<strong><label for="txt-nascimento" class="text-info">*Status:</label></strong>
 						<select class="form-control" name="cmb-prioridade" id="cmb-prioridade">
-    						<option value="-1">Escolha um status</option>
     						<option value="0">Em andamento</option>
     						<option value="1">Cancelado</option>
     						<option value="2">Concluido</option>
-							</select>
+						</select>
 					</div>
 					<div class="card-body">
-						<table class="table table-hover">
+						<table class="table table-sm table-hover">
 							<thead>
 								<tr>
 									<th>Cód.</th>
@@ -90,20 +89,25 @@
 							<%for (Compromisso c: compromissos){%>
 							
 								<tr>
-									<td><%= c.getCodCompromisso()%></td>
+									<td><strong><%=String.format("%04d", c.getCodCompromisso())%></strong></td>
 									<td>
-										<a href="ExibirContatoServlet?cod_contato=<%=c.getCodCompromisso()%>">
+										<a href="ExibirCompromissoServlet?cod_compromisso=<%=c.getCodCompromisso()%>">
 											<%= c.getTituloCompromisso()%>
 										</a>
 									</td>
 									<td>
 										<%= c.getDataCompromisso()%>
 									</td>
-									<td>
-										<%= c.getNivelPrioridade()%>
+									<td><%if(c.getNivelPrioridade() == 0){%>
+											Alto
+										<%}else if(c.getNivelPrioridade() == 1){%>
+											Médio
+										<%}else if(c.getNivelPrioridade() == 2){%>
+											Baixo
+										<%}%>	
 									</td>
 									<td>
-										<a href="ExcluirContatoServlet?cod_contato=<%=c.getCodCompromisso()%>">
+										<a href="ExcluirCompromissoServlet?cod_compromisso=<%=c.getCodCompromisso()%>">
 											<img src="imagens/trash20.png">
 										</a>
 									</td>
@@ -119,6 +123,4 @@
 	</div>
 </body>
 </html>
-	<%	
-	}
-	%>
+<%}%>

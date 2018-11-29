@@ -52,7 +52,7 @@
 
 						<div class="card">
 							<form id="usuario" action="CriarContatoServlet" method="get">
-								<div class="card-header">Cadastro</div>
+								<div class="card-header"></div>
 								<div class="card-body">
 									<div class="alert-warning">
 										<ul id="mensagens-erro">

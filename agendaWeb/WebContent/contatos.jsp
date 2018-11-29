@@ -65,7 +65,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<table class="table table-hover">
+						<table class="table table-sm table-hover">
 							<thead>
 								<tr>
 									<th>Cód.</th>
@@ -78,7 +78,7 @@
 							<%for (Contato c: contatos){%>
 							
 								<tr>
-									<td><%= c.getCodContato() %></td>
+									<td><strong><%=String.format("%04d", c.getCodContato())%></strong></td>
 									<td>
 										<a href="ExibirContatoServlet?cod_contato=<%=c.getCodContato()%>">
 											<%= c.getNome()%>
@@ -86,7 +86,7 @@
 									</td>
 									<td><%= c.getEmail()%></td>
 									<td>
-										<a href="ExcluirContatoServlet?cod_contato=<%=c.getCodContato()%>">
+										<a href="ExcluirContatoServlet?cod_contato=<%=c.getCodContato()%>&nome=<%=c.getNome()%>">
 											<img src="imagens/trash20.png">
 										</a>
 									</td>

@@ -1,10 +1,14 @@
+<%@page import="br.senai.sp.cfp127.model.Compromisso"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="br.senai.sp.cfp127.model.Usuario"%>
 <%
 	Usuario usuario = new Usuario();
-	// Converter uma string em um objeto do tipo usuario (casting)
 	usuario = (Usuario) session.getAttribute("usuario");
+	
+	Compromisso compromisso = new Compromisso();
+	compromisso = (Compromisso) session.getAttribute("compromisso");
+	session.removeAttribute("compromisso");
 	if (usuario == null) {
 		response.sendRedirect("login.html");
 	} else {
@@ -46,81 +50,89 @@
 			<div class="col-md-8">
 				<div class="card">
 					<div class="card-header bg-info">
-						<h5 class="text-white">Cadastrar Contato</h5>
+						<h5 class="text-white">Atualizar Contato</h5>
 					</div>
 					<div class="card-body">
 
 						<div class="card">
-							<form id="usuario" action="CriarContatoServlet" method="get">
-								<div class="card-header">Cadastro</div>
+							<form id="usuario" action="AtualizarCompromissoServlet" method="get">
+								<div class="card-header"></div>
 								<div class="card-body">
 									<div class="alert-warning">
 										<ul id="mensagens-erro">
 										</ul>
 									</div>
 									<!-- Linha 1 -->
-									<div class="row">
-										<div class="col-md-12">
-											<h6 class="text-primary  mt-1 mb-2">Dados Pessoais</h6>
-										</div>
-									</div>
 									<div>
 										<ul id="erros"></ul>
 									</div>
 									<div class="row form-group">
 
 										<div class="col-md-6">
+										<input type="text" name="txt-cod" value="<%=compromisso.getCodCompromisso()%>" hidden>
 											<label for="txt-titulo">*Titulo:</label>
-											<input class="form-control" type="text" name="txt-titulo" id="txt-titulo">
+											<input class="form-control" type="text" name="txt-titulo" id="txt-titulo" value="<%=compromisso.getTituloCompromisso() %>">
 										</div>
 										<div class="col-md-6">
 											<label for="txt-data">*Data:</label>
-											<input class="form-control" type="date" name="txt-data" id="txt-data">
+											<input class="form-control" type="date" name="txt-data" id="txt-data"  value="<%=compromisso.getDataCompromisso()%>">
 										</div>
 										<!-- Linha 2 -->
-										<div class="col-md-12">
-											<h6 class="text-primary  mt-4 mb-2">Dados de acesso:</h6>
-											<br>
-										</div>
 										<div class="col-md-3">
 											<label for="txt-horaInicio">*Início:</label>
-											<input class="form-control" type="time" name="txt-horaInicio" id="horaInicio">
+											<input class="form-control" type="time" name="txt-horaInicio" id="horaInicio"  value="<%=compromisso.getHoraInicio()%>">
 										</div>
 										<div class="col-md-3">
 											<label for="txt-horaFim">*Fim:</label>
-											<input class="form-control" type="time" name="txt-horaFim" id="txt-horaFim">
+											<input class="form-control" type="time" name="txt-horaFim" id="txt-horaFim"  value="<%=compromisso.getHoraFim()%>">
 										</div>
 										<div class="col-md-6">
 											<label for="txt-nascimento">*Fim:</label>
 											<select class="form-control" name="cmb-prioridade" id="cmb-prioridade">
     											<option value="-1">Escolha um nível de Prioridade</option>
-    											<option value="0">Alta</option>
-    											<option value="1">Média</option>
-    											<option value="2">Baixa</option>
+    											<%if(compromisso.getNivelPrioridade() == 0) { %>
+    												<option value="0" selected>Alta</option>
+    												<option value="1">Média</option>
+    												<option value="2">Baixa</option>
+    											<%}else if(compromisso.getNivelPrioridade() == 1) { %>
+    												<option value="0">Alta</option>
+    												<option value="1" selected>Média</option>
+    												<option value="2" selected>Baixa</option>
+    											<%}else if(compromisso.getNivelPrioridade() == 2) { %>
+    												<option value="0">Alta</option>
+    												<option value="1">Média</option>
+    												<option value="2">Baixa</option>
+    											<%}%>
 											</select>
-										</div>
-										<div class="col-md-12">
-											<h6 class="text-primary  mt-4 mb-2">Dados de acesso:</h6>
-											<br>
 										</div>
 										<div class="col-md-6">
 											<label for="txt-nascimento">*Status:</label>
-											<select class="form-control" name="cmb-prioridade" id="cmb-prioridade">
+											<select class="form-control" name="cmb-status" id="cmb-status">
     											<option value="-1">Escolha um status</option>
-    											<option value="0">Em andamento</option>
-    											<option value="1">Cancelado</option>
-    											<option value="2">Concluido</option>
+    											<%if(compromisso.getStatus() == 0) { %>
+    												<option value="0" selected>Em andamento</option>
+    												<option value="1">Cancelado</option>
+    												<option value="2">Concluido</option>
+    											<%}else if(compromisso.getStatus() == 1) { %>
+    												<option value="0" >Em andamento</option>
+    												<option value="1" selected>Cancelado</option>
+    												<option value="2">Concluido</option>
+    											<%}else if(compromisso.getStatus() == 2) { %>
+    												<option value="0">Em andamento</option>
+    												<option value="1">Cancelado</option>
+    												<option value="2" selected>Concluido</option>
+    											<%}%>
 											</select>
 										</div>
 										<div class="col-md-6">
 											<label for="txt-descricao">*Descrição</label>
-											<textarea type="date" name="txt-descricao" id="txt-descricao" class="form-control" rows="3"></textarea>
+											<textarea name="txt-descricao" id="txt-descricao" class="form-control h-75" rows="3"><%= compromisso.getDescricaoCompromisso()%></textarea>
 										</div>
 									</div>
 
 								</div>
 								<div class="card-footer">
-									<button class="btn btn-success" id="bt-criar">Criar novo Contato</button>
+									<button class="btn btn-success" id="bt-criar">Atualizar Contato</button>
 									<a href="contatos.jsp" class="btn btn-danger">Cancelar</a>
 								</div>
 							</form>

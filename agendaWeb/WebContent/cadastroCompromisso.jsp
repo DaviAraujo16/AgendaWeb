@@ -46,13 +46,13 @@
 			<div class="col-md-8">
 				<div class="card">
 					<div class="card-header bg-info">
-						<h5 class="text-white">Cadastrar Contato</h5>
+						<h5 class="text-white">Cadastrar Compromisso</h5>
 					</div>
 					<div class="card-body">
 
 						<div class="card">
-							<form id="usuario" action="CriarContatoServlet" method="get">
-								<div class="card-header">Cadastro</div>
+							<form id="usuario" action="CriarCompromissoServlet" method="post">
+								<div class="card-header"></div>
 								<div class="card-body">
 									<div class="alert-warning">
 										<ul id="mensagens-erro">
@@ -87,7 +87,7 @@
 											<br>
 										</div>
 
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<label for="txt-horaFim">*Fim:</label>
 											<input class="form-control" type="time" name="txt-horaFim" id="txt-horaFim">
 										</div>
@@ -100,7 +100,7 @@
     											<option value="2">Baixa</option>
 											</select>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-5">
 											<label for="txt-descricao">*Descrição</label>
 											<textarea type="date" name="txt-descricao" id="txt-descricao" class="form-control" rows="2"></textarea>
 										</div>

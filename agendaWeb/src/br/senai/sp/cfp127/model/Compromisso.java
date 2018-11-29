@@ -8,7 +8,7 @@ public class Compromisso {
 	private String dataCompromisso;
 	private String horaInicio;
 	private String horaFim;
-	private String descriçãoCompromisso;
+	private String descricaoCompromisso;
 	private int nivelPrioridade;
 	private int status;
 
@@ -60,12 +60,13 @@ public class Compromisso {
 		this.horaFim = horaFim;
 	}
 
-	public String getDescriçãoCompromisso() {
-		return descriçãoCompromisso;
+
+	public String getDescricaoCompromisso() {
+		return descricaoCompromisso;
 	}
 
-	public void setDescriçãoCompromisso(String descriçãoCompromisso) {
-		this.descriçãoCompromisso = descriçãoCompromisso;
+	public void setDescricaoCompromisso(String descricaoCompromisso) {
+		this.descricaoCompromisso = descricaoCompromisso;
 	}
 
 	public int getNivelPrioridade() {

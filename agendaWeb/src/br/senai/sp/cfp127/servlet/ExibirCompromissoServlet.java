@@ -12,26 +12,25 @@ import br.senai.sp.cfp127.dao.ContatoDao;
 import br.senai.sp.cfp127.model.Compromisso;
 import br.senai.sp.cfp127.model.Contato;
 
-
-@WebServlet("/ExibirContatoServlet")
-public class ExibirContatoServlet extends HttpServlet {
+@WebServlet("/ExibirCompromissoServlet")
+public class ExibirCompromissoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ExibirContatoServlet() {
+    public ExibirCompromissoServlet() {
         super();
     }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int codContato = Integer.parseInt(request.getParameter("cod_contato"));
+		int codCompromisso = Integer.parseInt(request.getParameter("cod_compromisso"));
 		
-		Contato contato = new Contato();
-		ContatoDao dao = new ContatoDao();
-		contato = dao.getContato(codContato);
+		Compromisso compromisso = new Compromisso();
+		CompromissoDao dao = new CompromissoDao();
+		compromisso = dao.getCompromisso(codCompromisso);
 		
-		request.getSession().setAttribute("contato", contato);
-		response.sendRedirect("editarContato.jsp");
 		
-		if(contato == null) {
+		
+		request.getSession().setAttribute("compromisso",compromisso);
+		response.sendRedirect("editarCompromisso.jsp");
+		
+		if(compromisso == null) {
 			response.sendRedirect("index.jsp");
 		}
 	
