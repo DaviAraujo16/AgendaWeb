@@ -38,6 +38,8 @@ public class ContatoDao {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally{
+			Conexao.fecharConexao();
 		}
 		
 		return contatos;
@@ -60,6 +62,8 @@ public class ContatoDao {
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
+		}finally{
+			Conexao.fecharConexao();
 		}
 	}
 	
@@ -81,6 +85,8 @@ public class ContatoDao {
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
+		}finally{
+			Conexao.fecharConexao();
 		}
 	}
 	
@@ -96,6 +102,8 @@ public class ContatoDao {
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
+		}finally{
+			Conexao.fecharConexao();
 		}
 		
 	}
@@ -119,6 +127,8 @@ public class ContatoDao {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally{
+			Conexao.fecharConexao();
 		}
 		return contato;
 		

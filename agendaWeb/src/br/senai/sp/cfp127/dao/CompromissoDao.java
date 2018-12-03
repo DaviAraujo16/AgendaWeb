@@ -21,14 +21,15 @@ public class CompromissoDao {
 		this.compromisso = compromisso;
 	}
 
-	public ArrayList<Compromisso> getCompromissos(int codUsuario) {
+	public ArrayList<Compromisso> getCompromissos(int codUsuario , int status) {
 		ArrayList<Compromisso> compromissos = new ArrayList<>();
 
-		String sql = "SELECT * FROM tbl_compromisso WHERE cod_usuario = ?";
+		String sql = "SELECT * FROM tbl_compromisso WHERE cod_usuario = ? AND status = ?";
 
 		try {
 			stm = Conexao.getConexao().prepareStatement(sql);
 			stm.setInt(1, codUsuario);
+			stm.setInt(2, status);
 			rs = stm.executeQuery();
 
 			// Enquanto tiver uma procima linha no resultado da consulta ao banco criar um
@@ -44,6 +45,8 @@ public class CompromissoDao {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			Conexao.fecharConexao();
 		}
 
 		return compromissos;
@@ -73,6 +76,8 @@ public class CompromissoDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			Conexao.fecharConexao();
 		}
 		return compromisso;
 
@@ -80,7 +85,7 @@ public class CompromissoDao {
 
 	public boolean gravar(Compromisso compromisso) {
 
-		String sql = "INSERT INTO tbl_compromisso (cod_usuario, titulo, data, horaInicio, horaFim, descricao, prioridade, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO tbl_compromisso (cod_usuario, titulo, data, horaInicio, horaFim, descricao, prioridade, status) VALUES (?, ?, ?, ?, ?, ?, 0, ?)";
 
 		try {
 			stm = Conexao.getConexao().prepareStatement(sql);
@@ -97,6 +102,8 @@ public class CompromissoDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}finally{
+			Conexao.fecharConexao();
 		}
 	}
 
@@ -119,6 +126,26 @@ public class CompromissoDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}finally{
+			Conexao.fecharConexao();
+		}
+	}
+	
+	public boolean cancelarCompromisso(int status , int codCompromisso) {
+
+		String sql = "UPDATE tbl_compromisso SET status = ?  WHERE cod_compromisso = ?";
+
+		try {
+			stm = Conexao.getConexao().prepareStatement(sql);
+			stm.setInt(1, status);
+			stm.setInt(2, codCompromisso);
+			stm.execute();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}finally{
+			Conexao.fecharConexao();
 		}
 	}
 

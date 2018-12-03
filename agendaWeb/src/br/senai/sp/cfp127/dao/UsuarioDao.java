@@ -35,11 +35,14 @@ public class UsuarioDao {
 			//substring(0,1) retira apenas o primeiro caracter de uma String	
 			stm.setString(4, usuario.getSexo().substring(0,1));
 			stm.setString(5, usuario.getDtNascimento());
+			
 			stm.execute();
 			return true;
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;	
+		}finally{
+			Conexao.fecharConexao();
 		}
 		
 	}
@@ -61,6 +64,8 @@ public class UsuarioDao {
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;	
+		}finally{
+			Conexao.fecharConexao();
 		}
 		
 	}
@@ -92,6 +97,8 @@ public class UsuarioDao {
 		//Mensagem de erro	
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally{
+			Conexao.fecharConexao();
 		}
 		
 		//Retorna o usuario encontrado

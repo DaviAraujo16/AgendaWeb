@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.senai.sp.cfp127.dao.CompromissoDao;
 import br.senai.sp.cfp127.model.Compromisso;
 
 @WebServlet("/AtualizarCompromissoServlet")
@@ -21,6 +22,21 @@ public class AtualizarCompromissoServlet extends HttpServlet {
 		Compromisso compromisso = new Compromisso();
 		compromisso.setCodCompromisso(Integer.parseInt(request.getParameter("txt-cod")));
 		compromisso.setTituloCompromisso(request.getParameter("txt-titulo"));
+		compromisso.setDataCompromisso(request.getParameter("txt-data"));
+		compromisso.setHoraInicio(request.getParameter("txt-horaInicio"));
+		compromisso.setHoraFim(request.getParameter("txt-horaFim"));
+		compromisso.setNivelPrioridade(Integer.parseInt(request.getParameter("cmb-prioridade")));
+		compromisso.setDescricaoCompromisso(request.getParameter("txt-descricao"));
+		compromisso.setStatus(Integer.parseInt(request.getParameter("cmb-status")));
+		
+		CompromissoDao dao = new CompromissoDao();
+		
+		if(dao.atualizar(compromisso)){
+			response.sendRedirect("compromissos.jsp");
+		}else {
+			System.out.println("ERRO NA ATUALIZAÇÃO");
+		}	
+		
 	}
 
 }

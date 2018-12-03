@@ -69,7 +69,7 @@
 									<div class="row form-group">
 
 										<div class="col-md-6">
-										<input type="text" name="txt-cod" value="<%=compromisso.getCodCompromisso()%>" hidden>
+										<input type="text" name="txt-cod" value="<%=compromisso.getCodCompromisso()%>" hidden="true">
 											<label for="txt-titulo">*Titulo:</label>
 											<input class="form-control" type="text" name="txt-titulo" id="txt-titulo" value="<%=compromisso.getTituloCompromisso() %>">
 										</div>
@@ -87,7 +87,7 @@
 											<input class="form-control" type="time" name="txt-horaFim" id="txt-horaFim"  value="<%=compromisso.getHoraFim()%>">
 										</div>
 										<div class="col-md-6">
-											<label for="txt-nascimento">*Fim:</label>
+											<label for=""cmb-prioridade"">*Prioridade:</label>
 											<select class="form-control" name="cmb-prioridade" id="cmb-prioridade">
     											<option value="-1">Escolha um nível de Prioridade</option>
     											<%if(compromisso.getNivelPrioridade() == 0) { %>
@@ -97,16 +97,16 @@
     											<%}else if(compromisso.getNivelPrioridade() == 1) { %>
     												<option value="0">Alta</option>
     												<option value="1" selected>Média</option>
-    												<option value="2" selected>Baixa</option>
+    												<option value="2">Baixa</option>
     											<%}else if(compromisso.getNivelPrioridade() == 2) { %>
     												<option value="0">Alta</option>
     												<option value="1">Média</option>
-    												<option value="2">Baixa</option>
+    												<option value="2" selected>Baixa</option>
     											<%}%>
 											</select>
 										</div>
 										<div class="col-md-6">
-											<label for="txt-nascimento">*Status:</label>
+											<label for="cmb-status">*Status:</label>
 											<select class="form-control" name="cmb-status" id="cmb-status">
     											<option value="-1">Escolha um status</option>
     											<%if(compromisso.getStatus() == 0) { %>

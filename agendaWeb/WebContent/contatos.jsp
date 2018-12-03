@@ -86,7 +86,7 @@
 									</td>
 									<td><%= c.getEmail()%></td>
 									<td>
-										<a href="ExcluirContatoServlet?cod_contato=<%=c.getCodContato()%>&nome=<%=c.getNome()%>">
+										<a href="confirmacao.jsp?cod_contato=<%=c.getCodContato()%>&nome=<%=c.getNome()%>">
 											<img src="imagens/trash20.png">
 										</a>
 									</td>

@@ -14,7 +14,13 @@
 	CompromissoDao dao = new CompromissoDao();
 	ArrayList<Compromisso> compromissos = new ArrayList<>();
 	
-	compromissos = dao.getCompromissos(usuario.getCod());
+	int status = 0;
+	
+	if (request.getParameter("status") != null){
+		status = Integer.parseInt(request.getParameter("status"));
+	}
+	
+	compromissos = dao.getCompromissos(usuario.getCod(), status);
 	
 	if (usuario == null){
 		response.sendRedirect("login.html");
@@ -47,7 +53,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card">
-					<%@ include file = "painelUsuario.jsp"%>
+					<%@ include file ="painelUsuario.jsp"%>
 				</div>
 				<div class="card mt-4">
 					<%@ include file = "menu.html"%>
@@ -68,10 +74,10 @@
 					</div>
 					<div class="col-md-4 mt-4">
 						<strong><label for="txt-nascimento" class="text-info">*Status:</label></strong>
-						<select class="form-control" name="cmb-prioridade" id="cmb-prioridade">
-    						<option value="0">Em andamento</option>
-    						<option value="1">Cancelado</option>
-    						<option value="2">Concluido</option>
+						<select class="form-control" name="status" id="status" onchange="selecionarStatus()">
+    						<option value="0"<%= status == 0 ? "selected" : "" %>>Em andamento</option>
+    						<option value="1" <%= status == 1 ? "selected" : "" %>>Cancelado</option>
+    						<option value="2" <%= status == 2 ? "selected" : "" %>>Concluido</option>
 						</select>
 					</div>
 					<div class="card-body">
@@ -82,6 +88,8 @@
 									<th>Titulo</th>
 									<th>Data</th>
 									<th>Prioridade</th>
+									<th></th>
+									<th></th>
 									<th></th>
 								</tr>
 							</thead>
@@ -96,7 +104,7 @@
 										</a>
 									</td>
 									<td>
-										<%= c.getDataCompromisso()%>
+										<%=ModificaData.dataPort(c.getDataCompromisso())%>
 									</td>
 									<td><%if(c.getNivelPrioridade() == 0){%>
 											Alto
@@ -107,8 +115,18 @@
 										<%}%>	
 									</td>
 									<td>
-										<a href="ExcluirCompromissoServlet?cod_compromisso=<%=c.getCodCompromisso()%>">
-											<img src="imagens/trash20.png">
+										<a href="ModificarStatusServlet?cod_compromisso=<%=c.getCodCompromisso()%>&status=1">
+											<img src="imagens/cancelar.png" alt="Cancelado" title="Cancelado">
+										</a>
+									</td>
+									<td>
+										<a href="ModificarStatusServlet?cod_compromisso=<%=c.getCodCompromisso()%>&status=0">
+											<img src="imagens/andamento.png" alt="Em andamento" title="Em andamento">
+										</a>
+									</td>
+									<td>
+										<a href="ModificarStatusServlet?cod_compromisso=<%=c.getCodCompromisso()%>&status=2">
+											<img src="imagens/concluido.png" alt="Concluído" title="Concluído">
 										</a>
 									</td>
 								</tr>								
@@ -121,6 +139,19 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		function selecionarStatus(){
+			var op = document.querySelector("#status")
+			if(op.value == 0){
+				window.location.href = "compromissos.jsp?status=0"
+			}if(op.value == 1){
+				window.location.href = "compromissos.jsp?status=1"
+			}if(op.value == 2){
+				window.location.href = "compromissos.jsp?status=2"
+			}
+		}	
+	</script>
 </body>
 </html>
 <%}%>

@@ -1,6 +1,7 @@
 package br.senai.sp.cfp127.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexao {
 	private static Connection con;
@@ -29,7 +30,13 @@ public class Conexao {
 	}
 
 	
-	
+	public static void fecharConexao() {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
