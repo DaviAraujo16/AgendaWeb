@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.senai.sp.cfp127.dao.CompromissoDao;
-import br.senai.sp.cfp127.dao.ContatoDao;
 import br.senai.sp.cfp127.model.Compromisso;
-import br.senai.sp.cfp127.model.Contato;
 
 @WebServlet("/ExibirCompromissoServlet")
 public class ExibirCompromissoServlet extends HttpServlet {
@@ -23,9 +21,8 @@ public class ExibirCompromissoServlet extends HttpServlet {
 		
 		Compromisso compromisso = new Compromisso();
 		CompromissoDao dao = new CompromissoDao();
+		
 		compromisso = dao.getCompromisso(codCompromisso);
-		
-		
 		
 		request.getSession().setAttribute("compromisso",compromisso);
 		response.sendRedirect("editarCompromisso.jsp");

@@ -64,7 +64,7 @@
 					<div class="card-header bg-info">
 						<div class="row">
 							<div class="col-md-8">
-								<h5 class="text-white">Meus Contatos</h5>
+								<h5 class="text-white">Meus Compromisso</h5>
 
 							</div>
 							<div class="col-md-3">

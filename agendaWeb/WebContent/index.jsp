@@ -1,3 +1,4 @@
+<%@page import="br.senai.sp.cfp127.dao.CompromissoDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	
@@ -8,6 +9,13 @@
 	// Converter uma string em um objeto do tipo usuario (casting)
 	usuario = (Usuario) session.getAttribute("usuario");
 	
+	CompromissoDao dao = new CompromissoDao();
+	ArrayList<Compromisso> compromissos = new ArrayList<>();
+	
+	int status = 3;
+	
+	compromissos = dao.getDescricao(usuario.getCod(), status);
+	
 	if (usuario == null){
 		response.sendRedirect("login.html");
 	}else{
@@ -16,8 +24,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
+<link href="imagens/favicon.png" rel="shortcut icon" type="image/x-icon">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Agenda Eletrônica - Home</title>
 </head>
 <body class="bg-dark">
 	<!-- Cabeçalho -->
@@ -51,6 +60,41 @@
 						<h5 class="text-white">Bem-vindo</h5>
 					</div>
 					<div class="card-body">
+						<div class="card-deck">
+						  <div class="card bg-danger text-white">
+						  	<div class="card-header">
+						  		<h5 class="card-title">Card title</h5>
+						  	</div>
+						    <div class="card-body">
+						      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						    </div>
+						    <div class="card-footer">
+						      <small class="text-muted">Last updated 3 mins ago</small>
+						    </div>
+						  </div>
+						  <div class="card bg-danger text-white">
+						  	<div class="card-header">
+						  		<h5 class="card-title">Card title</h5>
+						  	</div>
+						    <div class="card-body">
+						      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						    </div>
+						    <div class="card-footer">
+						      <small class="text-muted">Last updated 3 mins ago</small>
+						    </div>
+						  </div>
+						  <div class="card bg-danger text-white">
+						  	<div class="card-header">
+						  		<h5 class="card-title">Card title</h5>
+						  	</div>
+						    <div class="card-body">
+						      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						    </div>
+						    <div class="card-footer">
+						      <small class="text-muted">Last updated 3 mins ago</small>
+						    </div>
+						  </div>
+						</div>			
 					</div>
 					<div class="card-footer"></div>
 				</div>

@@ -52,14 +52,42 @@ public class CompromissoDao {
 		return compromissos;
 	}
 
-	public Compromisso getCompromisso(int codContato) {
+	public ArrayList<Compromisso> getDescricao (int codUsuario , int status) {
+		ArrayList<Compromisso> compromissos = new ArrayList<>();
+
+		String sql = "SELECT * FROM tbl_compromisso  WHERE cod_usuario = ? AND status = ? ORDER BY data LIMIT 3";
+
+		try {
+			stm = Conexao.getConexao().prepareStatement(sql);
+			stm.setInt(1, codUsuario);
+			stm.setInt(2, status);
+			rs = stm.executeQuery();
+
+			// Enquanto tiver uma procima linha no resultado da consulta ao banco criar um
+			// contato
+			while (rs.next()) {
+				this.compromisso = new Compromisso();
+				this.compromisso.setTituloCompromisso(rs.getString("titulo"));
+				this.compromisso.setDataCompromisso(rs.getString("data"));
+				this.compromisso.setDescricaoCompromisso(rs.getString("descricao"));
+				compromissos.add(this.compromisso);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			Conexao.fecharConexao();
+		}
+
+		return compromissos;
+	}
+	public Compromisso getCompromisso(int codCompromisso) {
 
 		String sql = "SELECT * FROM tbl_compromisso WHERE cod_compromisso = ?";
 		try {
 			stm = Conexao.getConexao().prepareStatement(sql);
-			stm.setInt(1, codContato);
+			stm.setInt(1, codCompromisso);
 			rs = stm.executeQuery();
-
 			// Enquanto tiver uma procima linha no resultado da consulta ao banco criar um
 			// contato
 			if (rs.next()) {
@@ -68,7 +96,6 @@ public class CompromissoDao {
 				this.compromisso.setTituloCompromisso(rs.getString("titulo"));
 				this.compromisso.setDataCompromisso(rs.getString("data"));
 				this.compromisso.setHoraInicio(rs.getString("horaInicio"));
-				;
 				this.compromisso.setHoraFim(rs.getString("horaFim"));
 				this.compromisso.setDescricaoCompromisso(rs.getString("descricao"));
 				this.compromisso.setNivelPrioridade(rs.getInt("prioridade"));
@@ -82,10 +109,11 @@ public class CompromissoDao {
 		return compromisso;
 
 	}
-
+	
+	
 	public boolean gravar(Compromisso compromisso) {
 
-		String sql = "INSERT INTO tbl_compromisso (cod_usuario, titulo, data, horaInicio, horaFim, descricao, prioridade, status) VALUES (?, ?, ?, ?, ?, ?, 0, ?)";
+		String sql = "INSERT INTO tbl_compromisso (cod_usuario, titulo, data, horaInicio, horaFim, descricao, prioridade, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			stm = Conexao.getConexao().prepareStatement(sql);
@@ -148,5 +176,7 @@ public class CompromissoDao {
 			Conexao.fecharConexao();
 		}
 	}
+	
+	
 
 }
