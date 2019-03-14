@@ -52,19 +52,14 @@ public class CompromissoDao {
 		return compromissos;
 	}
 
-	public ArrayList<Compromisso> getDescricao (int codUsuario , int status) {
+	public ArrayList<Compromisso> getDescricao (int codUsuario) {
 		ArrayList<Compromisso> compromissos = new ArrayList<>();
-
-		String sql = "SELECT * FROM tbl_compromisso  WHERE cod_usuario = ? AND status = ? ORDER BY data LIMIT 3";
-
+		String sql = "SELECT * FROM tbl_compromisso  WHERE cod_usuario = ? AND status = 0 ORDER BY data LIMIT 3";
 		try {
 			stm = Conexao.getConexao().prepareStatement(sql);
 			stm.setInt(1, codUsuario);
-			stm.setInt(2, status);
 			rs = stm.executeQuery();
-
-			// Enquanto tiver uma procima linha no resultado da consulta ao banco criar um
-			// contato
+			
 			while (rs.next()) {
 				this.compromisso = new Compromisso();
 				this.compromisso.setTituloCompromisso(rs.getString("titulo"));
@@ -72,15 +67,14 @@ public class CompromissoDao {
 				this.compromisso.setDescricaoCompromisso(rs.getString("descricao"));
 				compromissos.add(this.compromisso);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			Conexao.fecharConexao();
 		}
-
 		return compromissos;
 	}
+	
 	public Compromisso getCompromisso(int codCompromisso) {
 
 		String sql = "SELECT * FROM tbl_compromisso WHERE cod_compromisso = ?";

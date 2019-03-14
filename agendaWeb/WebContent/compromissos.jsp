@@ -30,8 +30,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
+<%@ include file = "ico.jsp"%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Agenda Eletrônica - Compromissos </title>
 </head>
 <body class="bg-dark">
 	<!-- Cabeçalho -->
@@ -74,7 +75,7 @@
 					</div>
 					<div class="col-md-4 mt-4">
 						<strong><label for="txt-nascimento" class="text-info">*Status:</label></strong>
-						<select class="form-control" name="status" id="status" onchange="selecionarStatus()">
+						<select class="form-control form-control-lg" name="status" id="status" onchange="selecionarStatus()">
     						<option value="0"<%= status == 0 ? "selected" : "" %>>Em andamento</option>
     						<option value="1" <%= status == 1 ? "selected" : "" %>>Cancelado</option>
     						<option value="2" <%= status == 2 ? "selected" : "" %>>Concluido</option>
@@ -139,7 +140,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<script>
 		function selecionarStatus(){
 			var op = document.querySelector("#status")
@@ -152,6 +152,8 @@
 			}
 		}	
 	</script>
+	<%@ include file = "footer.jsp"%>
+	<script> document.body.style.zoom = "135%"</script>
 </body>
 </html>
 <%}%>

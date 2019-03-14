@@ -13,8 +13,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
+<%@ include file = "ico.jsp"%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cadastrar Compromisso</title>
 </head>
 <body class="bg-dark">
 	<!-- Cabeçalho -->
@@ -118,6 +119,8 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file = "footer.jsp"%>
+	<script> document.body.style.zoom = "135%"</script>
 </body>
 </html>
 <%

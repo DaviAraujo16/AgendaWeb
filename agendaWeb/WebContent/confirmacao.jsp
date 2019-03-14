@@ -3,8 +3,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
+<%@ include file = "ico.jsp"%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Agenda Eletrônica - Confirmação</title>
 </head>
 <body class="bg-dark">
 	<!-- Cabeçalho -->
@@ -20,10 +21,8 @@
 				</div>
 			</div>
 		</div>
-	
 	</div>
 	<!-- Corpo -->
-		
 	<div class="container mt-5" style="width:900px;">
 		<div class="card">
 			<div class="card-header">
@@ -38,7 +37,7 @@
 			</div>
 				<div class="card-body">
 					<p><h3 class="text-danger">Você confirma a exclusão desse Contato?</h3></p>
-					<p>O contato <%=request.getParameter("nome")%> está preste a ser apagado.</p>
+					<p>O contato <strong><%=request.getParameter("nome")%></strong> está preste a ser apagado.</p>
 					<p> Se você realmente deseja apaga-lo clique em Excluir Contato</p>	
 				</div>
 				<div class="card-footer">

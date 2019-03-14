@@ -13,8 +13,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
+<%@ include file = "ico.jsp"%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Editar Usuario</title>
 </head>
 <body class="bg-dark">
 	<!-- Cabeçalho -->
@@ -78,7 +79,7 @@
 										<div class="col-md-4">
 											<label for="txt-nascimento">*Dt.Nascimento:</label> <input
 												class="form-control" type="date" name="txt-nascimento"
-												id="txt-nascimento" value="<%= usuario.getDtNascimento()%>">
+												id="txt-nascimento" value="<%=ModificaData.dataPort(usuario.getDtNascimento())%>">
 										</div>
 										<div class="col-md-3">
 											<label for="txt-sexo">*Sexo:</label> <select
@@ -127,6 +128,8 @@
 	</div>
 	<script src="js/valida.js"></script>
 	<script src="js/erros.js"></script>
+	<script> document.body.style.zoom = "135%"</script>
+	<%@ include file = "footer.jsp"%>
 </body>
 </html>
 <%

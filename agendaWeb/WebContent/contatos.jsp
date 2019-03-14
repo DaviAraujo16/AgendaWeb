@@ -21,9 +21,10 @@
 	<!DOCTYPE html>
 <html>
 <head>
+<%@ include file = "ico.jsp"%>
 <link rel="stylesheet" href="css/bootstrap.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Agenda Eletrônica - Contatos</title>
 </head>
 <body class="bg-dark">
 	<!-- Cabeçalho -->
@@ -102,6 +103,8 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file = "footer.jsp"%>
+	<script> document.body.style.zoom = "135%"</script>
 </body>
 </html>
 	<%	

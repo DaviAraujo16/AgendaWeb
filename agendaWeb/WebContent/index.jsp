@@ -1,7 +1,8 @@
+<%@page import="br.senai.sp.cfp127.model.Compromisso"%>
 <%@page import="br.senai.sp.cfp127.dao.CompromissoDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
+<%@page import="java.util.ArrayList"%>	
 <%@page import="br.senai.sp.cfp127.utils.ModificaData"%>
 <%@ page import="br.senai.sp.cfp127.model.Usuario" %>	
 <%
@@ -10,21 +11,22 @@
 	usuario = (Usuario) session.getAttribute("usuario");
 	
 	CompromissoDao dao = new CompromissoDao();
-	ArrayList<Compromisso> compromissos = new ArrayList<>();
+	
+	ArrayList<Compromisso> compromissos = new ArrayList<Compromisso>();
 	
 	int status = 3;
 	
-	compromissos = dao.getDescricao(usuario.getCod(), status);
+	compromissos = dao.getDescricao(usuario.getCod());
 	
 	if (usuario == null){
 		response.sendRedirect("login.html");
 	}else{
 	%>
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
-<link href="imagens/favicon.png" rel="shortcut icon" type="image/x-icon">
+<%@ include file = "ico.jsp"%>
 <meta charset="UTF-8">
 <title>Agenda Eletrônica - Home</title>
 </head>
@@ -59,49 +61,31 @@
 					<div class="card-header bg-info">
 						<h5 class="text-white">Bem-vindo</h5>
 					</div>
-					<div class="card-body">
-						<div class="card-deck">
-						  <div class="card bg-danger text-white">
-						  	<div class="card-header">
-						  		<h5 class="card-title">Card title</h5>
-						  	</div>
-						    <div class="card-body">
-						      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						    </div>
-						    <div class="card-footer">
-						      <small class="text-muted">Last updated 3 mins ago</small>
-						    </div>
-						  </div>
-						  <div class="card bg-danger text-white">
-						  	<div class="card-header">
-						  		<h5 class="card-title">Card title</h5>
-						  	</div>
-						    <div class="card-body">
-						      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						    </div>
-						    <div class="card-footer">
-						      <small class="text-muted">Last updated 3 mins ago</small>
-						    </div>
-						  </div>
-						  <div class="card bg-danger text-white">
-						  	<div class="card-header">
-						  		<h5 class="card-title">Card title</h5>
-						  	</div>
-						    <div class="card-body">
-						      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						    </div>
-						    <div class="card-footer">
-						      <small class="text-muted">Last updated 3 mins ago</small>
-						    </div>
-						  </div>
-						</div>			
+					<div class="card-body row">
+						<%for (Compromisso c: compromissos){%>
+						<div class="card-deck col-4 ml-2  text-white">
+						  	<div class="card bg-danger">
+						  		<div class="card-header">
+						  			<h6 class="card-title"><%= c.getTituloCompromisso()%></h6>
+						  		</div>
+						    	<div class="card-body">
+						      		<p class="card-text"><%=c.getDescricaoCompromisso()%></p>
+						    	</div>
+						   		<div class="card-footer text-white">
+						      		<small class="text-white"><%=ModificaData.dataPort(c.getDataCompromisso())%></small>
+						    	</div>
+						 	</div>
+						</div>
+						<%}%>			
 					</div>
 					<div class="card-footer"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
+	<%@ include file = "footer.jsp"%>
+	<script> document.body.style.zoom = "135%"</script>
+	</body>
 </html>
 	<%	
 	}

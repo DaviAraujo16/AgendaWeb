@@ -17,8 +17,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
+<%@ include file = "ico.jsp"%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Editar Compromisso</title>
 </head>
 <body class="bg-dark">
 	<!-- Cabeçalho -->
@@ -133,16 +134,17 @@
 								</div>
 								<div class="card-footer">
 									<button class="btn btn-success" id="bt-criar">Atualizar Contato</button>
-									<a href="contatos.jsp" class="btn btn-danger">Cancelar</a>
+									<a href="compromissos.jsp" class="btn btn-danger">Cancelar</a>
 								</div>
 							</form>
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<%@ include file = "footer.jsp"%>
+	<script> document.body.style.zoom = "135%"</script>
 </body>
 </html>
 <%
